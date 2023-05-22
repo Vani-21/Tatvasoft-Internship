@@ -34,7 +34,7 @@ const App = () => (
   </BrowserRouter>
 
   {/* <img src={Logo} alt='App Logo'/> */}
-  <img src={`${process.env.REACT_APP_HOSTED_URL}logo192.png`} alt='App Logo'/>
+  {/* <img src={`${process.env.REACT_APP_HOSTED_URL}logo192.png`} alt='App Logo'/> */}
   </ThemeProvider>
  </>
   );
