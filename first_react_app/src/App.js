@@ -1,9 +1,9 @@
 
 import './App.css';
-import {Routes, Route, BrowserRouter, Link} from "react-router-dom";
+import {Routes, Route, BrowserRouter,} from "react-router-dom";
 //import { globleStyles } from './constants';
 
-import appStyle from "./AppStyle.module.css";
+
 
 import { HomePage } from './HomePage';
 import { Apple } from './Apple';
@@ -14,6 +14,7 @@ import { NotFound } from './NotFound';
 
 import { ThemeProvider } from '@emotion/react';
 import { theme } from './styles';
+import { Navbar } from './Navbar';
 
 const App = () => (
 
@@ -22,22 +23,14 @@ const App = () => (
   
 
   <BrowserRouter>
-  <div  
-  // style={{
-  //   ...globleStyles.navbar
-  //   }}
-     className={appStyle.navbarStyle}
-    >
-  <Link to="/" style={{marginLeft:5}}>Home</Link>
-  <Link to="/apple" style={{marginLeft:10}}>Apple</Link>
-  <Link to="/applet" style={{marginLeft:10}} >Applet</Link>
-  </div>
-
+  <Navbar/>
+  
   <Routes>
        <Route path='/' element={<HomePage/>}></Route>
        <Route path='/apple' element={<Apple/>}></Route>
        <Route path='*' element={<NotFound/>}></Route>
   </Routes>
+  
   </BrowserRouter>
 
   {/* <img src={Logo} alt='App Logo'/> */}
