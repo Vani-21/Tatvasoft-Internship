@@ -177,7 +177,7 @@ export const Apple = () => {
           )}
         </Formik>
       </div>
-      <div>
+      {/* <div>
       {user.map((item) => {
   return (
     <div key={item.id}>
@@ -186,7 +186,7 @@ export const Apple = () => {
     </div>
   );
 })}
-      </div>
+      </div> */}
     </div>
   );
 };
