@@ -15,6 +15,8 @@ import { NotFound } from './NotFound';
 import { ThemeProvider } from '@emotion/react';
 import { theme } from './styles';
 import { Navbar } from './Navbar';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => (
 
@@ -24,7 +26,7 @@ const App = () => (
 
   <BrowserRouter>
   <Navbar/>
-  
+  <ToastContainer/>
   <Routes>
        <Route path='/' element={<HomePage/>}></Route>
        <Route path='/apple' element={<Apple/>}></Route>
