@@ -1,45 +1,37 @@
-
-import './App.css';
+import React from 'react';
+import './Styles/App.css';
 import {Routes, Route, BrowserRouter,} from "react-router-dom";
 //import { globleStyles } from './constants';
-
-
-
-import { HomePage } from './HomePage';
-import { Apple } from './Apple';
-import { NotFound } from './NotFound';
-
+import { HomePage } from './Components/HomePage';
+import Login  from './Pages/Login/Login';
+import { NotFound } from './Components/NotFound';
+import Register from './Pages/Register/Register';
 //import Logo from "./images/logo.svg";
 //import siteLogo from "../public/logo192.png"
-
-import { ThemeProvider } from '@emotion/react';
-import { theme } from './styles';
-import { Navbar } from './Navbar';
+//import { ThemeProvider } from '@emotion/react';
+import { Navbar } from './Components/Navbar';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const App = () => (
+
+const App = () => {
+  return(
 
   <>
-  <ThemeProvider theme={theme}>
-  
-
+ <ToastContainer/>
   <BrowserRouter>
   <Navbar/>
-  <ToastContainer/>
+ 
   <Routes>
-       <Route path='/' element={<HomePage/>}></Route>
-       <Route path='/apple' element={<Apple/>}></Route>
+       <Route path='/home' element={<HomePage/>}></Route>
+       <Route path='/' element={<Login/>}></Route>
+       <Route path='/register' element={<Register/>}></Route>
        <Route path='*' element={<NotFound/>}></Route>
   </Routes>
-  
   </BrowserRouter>
-
   {/* <img src={Logo} alt='App Logo'/> */}
   {/* <img src={`${process.env.REACT_APP_HOSTED_URL}logo192.png`} alt='App Logo'/> */}
-  </ThemeProvider>
+  
  </>
-  );
-
-
+  );}
 export default App;
