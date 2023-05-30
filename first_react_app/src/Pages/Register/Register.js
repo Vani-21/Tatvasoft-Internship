@@ -1,5 +1,5 @@
 import React from "react";
-//import { useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Button from '@mui/material/Button';
@@ -15,13 +15,14 @@ import * as Yup from "yup";
 import { toast } from 'react-toastify';
 import "./register_styles.css";
 import authService from "../../Service/auth.service";
+import customerService from "../../Service/customer.service";
 
 
 
 const Register = () => {
     // const [name, setName] = useState("");
     // const [email, setEmail] = useState("");
-    const [role,setRole]=useState('');
+    const [role,setRole]=useState([]);
     // const [open, setOpen] = useState(false);
     // const [anchorEl, setAnchorEl] = useState(null);
     const Navigate = useNavigate('');
@@ -33,6 +34,18 @@ const Register = () => {
         password: '',
         confirmPassword: '',
     }
+
+    useEffect(() => {
+        if (role.length) return;
+        getRoles();
+      }, [role]);
+    
+      const getRoles = () => {
+        customerService.getAllRoles().then((res) => {
+          setRole(res);
+        });
+      };
+
 
     const validationSchema = Yup.object().shape({
         firstName: Yup.string().required("First name is required"),
@@ -108,7 +121,7 @@ const Register = () => {
             <div style={{ padding: 5 }}></div>
             <div >
                 <div className="container">
-                    <div style={{paddingLeft:640, fontSize:18}}>
+                    <div style={{justifyContent:"center",display:"flex",fontSize:18}}>
                     <Breadcrumbs separator="›" aria-label="breadcrumb" className="breadcrumb-wrapper">
                     <Link color="inherit" href="/" title="Home" className="link-custom" style={{textDecoration:"none",fontSize:18}} >Home</Link>
                     <Typography className="typo-custom" style={{fontSize:18}}>Create an Account</Typography>
@@ -211,18 +224,23 @@ const Register = () => {
                                             <div>
                                             <div className='label'>Roles</div>
                                             <Select
-                                            name='role'
-                                            value={role}
+                                            name='roleId'
+                                            id={"roleId"}
+                                            value={values.roleId}
                                             size="small"
                                             style={{width:'532px'}}
-                                            onChange={(event) => {
-                                                        setRole(event.target.value);
-                                                    }}
+                                            onChange={handleChange}
                                                 
                                             >
-                                            <MenuItem value=""></MenuItem>
-                                            <MenuItem value={'Buyer'}>Buyer</MenuItem>
-                                            <MenuItem value={'Seller'}>Seller</MenuItem>
+                                            {role.length > 0 &&
+                                               role.map((role) => (
+                                                  <MenuItem
+                                                    value={role.id}
+                                                    key={"name" + role.id}
+                                                  >
+                                                    {role.name}
+                                                 </MenuItem>
+                                            ))}
                                             </Select>
                                             {errors.roleId && touched.roleId && <div style={{
                                                 color: 'red',

@@ -11,6 +11,8 @@ import * as Yup from "yup";
 import authService from "../../Service/auth.service";
 import { toast } from 'react-toastify';
 import "./login_styles.css";
+import { useAuthContext } from "../../context/auth";
+
 
 const Login = () => {
    
@@ -18,7 +20,8 @@ const Login = () => {
   // const[password,setPassword]=useState('');
   // const [open, setOpen] = useState(false);
   // const [anchorEl, setAnchorEl] = useState(null);
-  const Navigate = useNavigate('');
+  const Navigate = useNavigate();
+  const authContext = useAuthContext();
   // const [user, setUser] = useState([]);
 
   // useEffect(() => {
@@ -43,7 +46,7 @@ const Login = () => {
     authService.login(values).then((res) => {
       delete res._id;
       delete res.__v;
-      // authContext.setUser(res);
+      authContext.setUser(res);
       Navigate("/");
       toast.success("Successfully logged in");
     });
@@ -74,7 +77,7 @@ const Login = () => {
     <>
       <div style={{ padding: 5 }}></div>
       <div className="container">
-                    <div style={{paddingLeft:640, fontSize:18}}>
+                    <div style={{justifyContent:"center",display:"flex", fontSize:18}}>
                     <Breadcrumbs separator="›" aria-label="breadcrumb" className="breadcrumb-wrapper">
                     <Link color="inherit" href="/" title="Home" className="link-custom" style={{textDecoration:"none",fontSize:18}} >Home</Link>
                     <Typography className="typo-custom" style={{fontSize:18}}>Login</Typography>
@@ -93,7 +96,7 @@ const Login = () => {
       </div>
       
 <div style={{margin:'auto',width:'70%'}}>
-    <div className="side-by-side">
+    <div className="side-by-side1">
         <div className="customer">
           <Typography variant="h6" className="custom-typography1" style={{fontWeight:500}} mt={ 3}>New Customer</Typography>
             <div style={{marginBottom:10, width:'500px'}}></div>
@@ -160,6 +163,7 @@ const Login = () => {
                             onChange={handleChange}
                             name="email"
                             size="small"
+                            autoComplete="off"
                             onBlur={handleBlur}
                             
                           />
@@ -180,6 +184,7 @@ const Login = () => {
                             onChange={handleChange}
                             name="password"
                             size="small"
+                            autoComplete="off"
                             variant="outlined"
                             onBlur={handleBlur}
                             

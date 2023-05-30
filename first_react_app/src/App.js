@@ -1,34 +1,37 @@
 import React from 'react';
 import './Styles/App.css';
-import {Routes, Route, BrowserRouter,} from "react-router-dom";
-//import { globleStyles } from './constants';
-import { HomePage } from './Components/HomePage';
-import Login  from './Pages/Login/Login';
-import { NotFound } from './Components/NotFound';
-import Register from './Pages/Register/Register';
-//import Logo from "./images/logo.svg";
-//import siteLogo from "../public/logo192.png"
-//import { ThemeProvider } from '@emotion/react';
-import { Navbar } from './Components/Navbar';
+import { BrowserRouter,} from "react-router-dom";
+
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import Footer from './Components/footer/Footer';
+import Header from './Components/header/Header';
+import MainNavigation from "./Components/MainNavigation";
+import { AuthWrapper } from './context/auth';
 
 const App = () => {
   return(
 
   <>
- <ToastContainer/>
-  <BrowserRouter>
-  <Navbar/>
+
  
-  <Routes>
+ 
+  {/* <Routes>
        <Route path='/home' element={<HomePage/>}></Route>
        <Route path='/' element={<Login/>}></Route>
        <Route path='/register' element={<Register/>}></Route>
        <Route path='*' element={<NotFound/>}></Route>
-  </Routes>
+  </Routes> */}
+  <ToastContainer/>
+  <BrowserRouter>
+  <AuthWrapper>
+  <Header/>
+ <MainNavigation/>
+  <Footer/>
+  </AuthWrapper>
   </BrowserRouter>
+  
+ 
   {/* <img src={Logo} alt='App Logo'/> */}
   {/* <img src={`${process.env.REACT_APP_HOSTED_URL}logo192.png`} alt='App Logo'/> */}
   

@@ -96,6 +96,14 @@
     background-color: #e5e5e5;
 }
 
-
+.MuiBreadcrumbs-separator {
+    color: #b4b4b4;
+    font-size: 20px;
+    
+    margin-left: 8px;
+    user-select: none;
+    margin-right: 8px;
+    font-weight: 400;
+}
 
 
