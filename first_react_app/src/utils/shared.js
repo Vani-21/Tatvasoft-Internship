@@ -35,17 +35,17 @@ const NavigationItems = [
   {
     name: "Users",
     route: RoutePaths.User,
-    access: [Role.Admin,Role.Buyer],
+    access: [Role.Admin,Role.Seller],
   },
   {
     name: "Categories",
     route: RoutePaths.Category,
-    access: [Role.Admin,Role.Buyer],
+    access: [Role.Admin,Role.Seller],
   },
   {
     name: "Books",
     route: RoutePaths.Book,
-    access: [Role.Admin, Role.Seller,Role.Buyer],
+    access: [Role.Admin, Role.Seller],
   },
   {
     name: "Update Profile",

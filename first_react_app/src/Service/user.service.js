@@ -44,7 +44,7 @@ const updateProfile = async (data) => {
   });
 };
 
-const customerService = {
+const userService = {
   getAllUsers,
   getAllRoles,
   getById,
@@ -53,4 +53,4 @@ const customerService = {
   updateProfile,
 };
 
-export default customerService;
+export default userService;

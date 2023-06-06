@@ -1,13 +1,14 @@
 import React from 'react';
 import './Styles/App.css';
 import { BrowserRouter,} from "react-router-dom";
-
+import loader from "../src/images/loader.gif";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Footer from './Components/footer/Footer';
 import Header from './Components/header/Header';
 import MainNavigation from "./Components/MainNavigation";
 import { AuthWrapper } from './context/auth';
+import { CartWrapper } from './context/cart';
 
 const App = () => {
   return(
@@ -22,12 +23,18 @@ const App = () => {
        <Route path='/register' element={<Register/>}></Route>
        <Route path='*' element={<NotFound/>}></Route>
   </Routes> */}
-  <ToastContainer/>
+  
   <BrowserRouter>
   <AuthWrapper>
+    <CartWrapper>
+    <div className="loader-wrapper">
+                <img src={loader} alt="loader" />
+              </div>
   <Header/>
  <MainNavigation/>
   <Footer/>
+  <ToastContainer/>
+  </CartWrapper>
   </AuthWrapper>
   </BrowserRouter>
   

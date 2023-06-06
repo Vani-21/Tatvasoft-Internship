@@ -1,12 +1,12 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import React from "react";
-//import Shared from "../utils/shared";
+import Shared from "../utils/shared";
 import { RoutePaths } from "../utils/enum";
 import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const intialUserValue = {
-  id: 0,
+  id: "",
   email: "",
   firstName: "",
   lastName: "",
@@ -33,13 +33,13 @@ export const AuthWrapper = ({ children }) => {
 
   const setUser = (user) => {
     console.log("bruce@wayne2.com", user);
-    //localStorage.setItem(Shared.LocalStorageKeys.USER, JSON.stringify(user));
+    localStorage.setItem(Shared.LocalStorageKeys.USER, JSON.stringify(user));
     _setUser(user);
   };
 
   useEffect(() => {
     const itemStr =
-      //JSON.parse(localStorage.getItem(Shared.LocalStorageKeys.USER)) ||
+      JSON.parse(localStorage.getItem(Shared.LocalStorageKeys.USER)) ||
       intialUserValue;
     // if the item doesn't exist, return null
     if (!itemStr.id) {
@@ -51,7 +51,7 @@ export const AuthWrapper = ({ children }) => {
 
   const signOut = () => {
     setUser(intialUserValue);
-    //localStorage.removeItem(Shared.LocalStorageKeys.USER);
+    localStorage.removeItem(Shared.LocalStorageKeys.USER);
     navigate(`${RoutePaths.Login}`);
   };
 
@@ -63,12 +63,12 @@ export const AuthWrapper = ({ children }) => {
     if (!user.id) {
       return;
     }
-    // const access = Shared.hasAccess(pathname, user);
-    // if (!access) {
-    //   toast.warning("Sorry, you are not authorized to access this page");
-    //   navigate(RoutePaths.BookListing);
-    //   return;
-    // }
+    const access = Shared.hasAccess(pathname, user);
+    if (!access) {
+      toast.warning("Sorry, you are not authorized to access this page");
+      navigate(RoutePaths.BookListing);
+      return;
+    }
     setAppInitialize(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname, user]);
